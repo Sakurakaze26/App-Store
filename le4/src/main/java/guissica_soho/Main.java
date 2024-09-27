@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,7 +22,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Path jsonPath = Paths.get("src/main/java/assets/appStore.json");
+        URL jsonUrl = getClass().getResource("appStore.json");
+        Path jsonPath = Paths.get(jsonUrl.toURI());
         String jsonContent = new String(Files.readAllBytes(jsonPath));
     
         Gson gson = new Gson();
@@ -40,4 +42,3 @@ public class Main extends Application {
         primaryStage.show();
     }
 }
-
